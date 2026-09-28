@@ -19,7 +19,7 @@ The user wants to experience shipping an independently branded app into the Zepp
 
 ## Current code
 
-Root app.js, app.json, page/ and assets/ come from the working putting prototype. page/session.js still stores distanceM and boolean made outcomes. Tests use the extracted paths. Dependencies are local and pinned. No remote repository is configured; nothing has been submitted to the store.
+The app/ directory (app.js, app.json, page/ and assets/) come from the working putting prototype. page/session.js still stores distanceM and boolean made outcomes. Tests use the extracted paths. Dependencies are local and pinned. No remote repository is configured; nothing has been submitted to the store.
 
 ## Next work
 

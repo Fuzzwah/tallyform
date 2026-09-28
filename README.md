@@ -15,7 +15,7 @@ npm run build
 npm run dev
 ```
 
-`dev` requires the Zepp simulator. `npm run preview` uses the paired-watch developer flow. Build output is in `dist/`.
+`dev` requires the Zepp simulator. `npm run preview` uses the paired-watch developer flow. Watch source is in `app/`; build output is in `app/dist/`. This keeps host tests and planning documents out of the watch package.
 
 ## Product and release work
 

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
-import * as session from '../page/session.js';
+import * as session from '../app/page/session.js';
 const { newSession, transition, totals, distanceLabel, loadSession, saveSession, STORAGE_KEY } = session;
 
 class Storage {
@@ -85,7 +85,7 @@ function pageHarness(storage = new Storage()) {
       return widget;
     },
   };
-  const source = readFileSync(new URL('../page/index.js', import.meta.url), 'utf8')
+  const source = readFileSync(new URL('../app/page/index.js', import.meta.url), 'utf8')
     .replace(/^import[\s\S]*?from '[^']+';\n/gm, '');
   vm.runInNewContext(source, { ...session, ui, console, px: (value) => value * 390 / 432, Page(value) { page = value; },
     LocalStorage: function () { return storage; }, exit() { exited = true; },

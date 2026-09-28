@@ -9,9 +9,9 @@
   },
   "scripts": {
     "test": "node --test tests/*.test.js",
-    "build": "zeus build --target \"Amazfit Bip Max\"",
-    "dev": "zeus dev --target \"Amazfit Bip Max\"",
-    "preview": "zeus preview --target \"Amazfit Bip Max\"",
+    "build": "cd app && zeus build --target \"Amazfit Bip Max\"",
+    "dev": "cd app && zeus dev --target \"Amazfit Bip Max\"",
+    "preview": "cd app && zeus preview --target \"Amazfit Bip Max\"",
     "zeus": "zeus"
   },
   "_moduleAliases": {
