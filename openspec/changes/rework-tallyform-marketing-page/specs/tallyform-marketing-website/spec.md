@@ -72,14 +72,14 @@ The static page SHALL present readable copy, an undistorted hero and operable na
 
 ### Requirement: Publication reuses the explicitly approved website
 
-Generation SHALL produce a reviewable artifact without automatically publishing it. The operator SHALL show the actual website demo and obtain explicit user sign-off before dispatching publication. Publication SHALL require owner confirmation, the successful generation run identity and the approved content digest, and SHALL deploy the reviewed files without rebuilding or recapturing.
+Generation SHALL produce a reviewable artifact without automatically publishing it. The operator SHALL show the actual website demo and obtain explicit user sign-off before dispatching publication. Publication SHALL require owner confirmation, an immutable reviewed artifact identity (successful Actions generation run or commit preserving the locally generated sealed bundle) and the approved content digest, and SHALL deploy the reviewed files without rebuilding or recapturing.
 
 #### Scenario: Generated site has not been approved
 - **WHEN** generation completes without explicit website sign-off
 - **THEN** the review artifact is available but the public website is not replaced
 
 #### Scenario: Approved artifact is published
-- **WHEN** the owner confirms the reviewed generation run and matching content digest
+- **WHEN** the owner confirms the reviewed artifact identity and matching content digest
 - **THEN** publication deploys those exact site files without regeneration
 - **AND** the operator verifies the returned live URL before reporting delivery
 

@@ -64,7 +64,7 @@ The GitHub Pages deployment MUST publish a static website only after the app tes
 #### Scenario: A complete main-branch generation succeeds
 
 - **WHEN** the required checks and capture complete for a source revision
-- **THEN** the generated static site and matching screenshot are deployed to GitHub Pages
+- **THEN** the generated static site and matching screenshot are eligible for review and approval-gated GitHub Pages publication under the successor `rework-tallyform-marketing-page`, not automatically deployed
 - **AND** the site metadata identifies that source revision
 
 #### Scenario: The app build or capture fails

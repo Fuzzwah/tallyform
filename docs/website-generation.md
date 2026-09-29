@@ -110,7 +110,7 @@ The normal website build consumes local assets; it does not call an image model 
 
 The complete generator passed with the supplied transparent hero: 39 host tests, production build, simulator capture, asset validation and website packaging. After capture, automation confirmed QEMU's Quit dialog; the QEMU process was absent and the simulator manager remained running.
 
-The complete sealed site was reviewed at 1440 px and 375 px beneath `/site/`: transparent hero loaded with the original aspect ratio, no horizontal overflow, working walkthrough CTA and technical-page raw capture. Keyboard focus was checked in the earlier complete-site review. The review server is `http://127.0.0.1:4175/site/`; bundle `/tmp/tallyform-review-transparent-1790641589499`, site digest `f704362ac1695f788c47df0a01167b8e0d21b14aebe3a70aa0d6ecc7b43d3379`. Website sign-off and public deployment remain pending.
+The complete sealed site was reviewed at 1440 px and 375 px beneath `/site/`, then approved by the user with “ship it.” The user subsequently requested Zepp OS-wide positioning; only the two availability statements were changed to “In development for Zepp OS watches.” The app capture, hero, provenance and all other site files were preserved byte-for-byte.
 
 
 ## GitHub Pages deployment
@@ -130,7 +130,7 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory /tmp/tallyform-review-U
 
 Open `http://127.0.0.1:4173/`. Review the hero and page at 375 px and 1440 px, keyboard focus, walkthrough CTA and technical resources. Show the demo to the user and obtain explicit approval; hero approval alone does not approve the website.
 
-For publication, download the GitHub generation artifact into a new directory and preview **those exact bytes**:
+For the optional Actions-generation route, download the GitHub generation artifact into a new directory and preview **those exact bytes**:
 
 ```sh
 gh run download RUN_ID --repo Fuzzwah/tallyform --name website-review --dir /tmp/tallyform-actions-review-UNIQUE
@@ -161,10 +161,17 @@ gh workflow run publish-website.yml --repo Fuzzwah/tallyform --ref main \
   -f confirm_approval=true
 ```
 
-The publication workflow requires a successful generation run on `main`, downloads its review artifact, verifies the approved digest, and uploads only its `site/` contents to Pages. **It never rebuilds or recaptures.** Publication runs are serialized rather than cancelled midway. A failed pre-publication check leaves the existing site unchanged. The deployment job checks HTTP reachability; the operator must also open the returned URL and review the actual page and resources before reporting successful delivery.
+The publication workflow accepts either an immutable commit preserving the approved local bundle or a successful Actions generation run on `main`. It downloads that exact source, verifies the approved digest, and uploads only its `site/` contents to Pages. **It never rebuilds or recaptures.** Publication runs are serialized rather than cancelled midway. A failed pre-publication check leaves the existing site unchanged. The deployment job checks HTTP reachability; the operator must also open the returned URL and review the actual page and resources before reporting successful delivery.
 
-### Verification and outstanding setup
+### Publication evidence and remaining limitations
 
-The release CLI was exercised with a throwaway bundle: sealing and verification returned the same digest, and changing the reviewed HTML caused exit code 1. All 39 host tests and the Bip Max production build passed. This proves local identity enforcement, not a successful GitHub Actions run or live deployment.
+- Public site: `http://github.fuzzwah.com/tallyform/`. GitHub inherited the account's existing Pages domain.
+- Initial approved deployment: Actions run `36504702907`, review commit `e880fafd4ae519773d6e2a76471bee07db96650c`.
+- User-requested Zepp OS wording correction: successful Actions run `36505052735`, review commit `3cca8c3634d13bd0f0c0c16aa7a5e4aca080cbe8`, site SHA-256 `861f5a43e8e0441f4a69f50d8b32335e3e4ba73160cf25e1964c0441411915b3`.
+- All seven final public files were fetched over HTTP and matched the corrected sealed bundle byte-for-byte.
+- Intentional wrong-digest run `36504829759` failed at verification; Pages upload and deployment were skipped.
+- Live desktop/mobile layout, transparent hero, keyboard focus, walkthrough CTA and technical capture were inspected. HTTPS certificate checking was disabled only in the isolated visual-review browser because the inherited domain's certificate was not yet valid; this is not evidence of working HTTPS.
+- GitHub rejected HTTPS enforcement with “The certificate has not finished being issued.” Re-enable HTTPS after certificate issuance and verify it without bypassing validation. No account-wide domain or DNS settings were changed.
+- The complete local generator, 39 host tests and production build passed. The local-sealed-bundle publication route was exercised end to end; the optional self-hosted Actions simulator-generation route still has no registered runner and was not exercised.
 
-The repository has been created and configured as the local remote; no source has been pushed and no website has been published. GitHub's runners API returned zero registered runners. Runner registration, Pages setup and hosted workflow execution remain to be completed during delivery. Both workflow files passed YAML parsing and the updated OpenSpec change passed strict validation; this is not hosted execution evidence. The user-supplied hero is now integrated, with the requested transparent background, and the complete demo awaits explicit sign-off. Simulator evidence does not establish physical-watch acceptance or Zepp store publication.
+The public product positioning targets broad Zepp OS watch support; only the current Bip Max build/simulator is verified. Website delivery does not establish additional device compatibility, physical-watch acceptance or Zepp store publication.

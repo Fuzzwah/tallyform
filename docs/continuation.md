@@ -8,6 +8,7 @@ The user wants to experience shipping an independently branded app into the Zepp
 - General repetition/practice tracking, not restricted to golf.
 - Flexible measure: longer distances, duration, weight and extensible/custom units.
 - Preserve the mockup-inspired green value card, distinct outcome cards and make-rate bar as the visual starting point.
+- Target as many Zepp OS watches as practical, not only Amazfit Bip Max. Bip Max is the current build/simulator target and pictured device; additional watch compatibility must be implemented and verified before being claimed.
 
 ## Unresolved decisions
 
@@ -19,7 +20,7 @@ The user wants to experience shipping an independently branded app into the Zepp
 
 ## Current code
 
-The app/ directory (app.js, app.json, page/ and assets/) comes from the working putting prototype. The current manifest and watch page use Tallyform / Reps & Practice Tracker, while page/session.js still stores distanceM and boolean made outcomes. Tests use the extracted paths. Dependencies are local and pinned. The public `Fuzzwah/tallyform` repository is configured as `origin`; no source has been pushed or website published. Nothing has been submitted to the Zepp store.
+The app/ directory (app.js, app.json, page/ and assets/) comes from the working putting prototype. The current manifest and watch page use Tallyform / Reps & Practice Tracker, while page/session.js still stores distanceM and boolean made outcomes. Tests use the extracted paths. Dependencies are local and pinned. Source is published to `Fuzzwah/tallyform`; the approved marketing site is live at `http://github.fuzzwah.com/tallyform/`. The inherited Pages domain's HTTPS certificate issuance is pending. Nothing has been submitted to the Zepp store.
 
 ## Next work
 

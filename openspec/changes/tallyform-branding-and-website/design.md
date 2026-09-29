@@ -72,7 +72,7 @@ This keeps the website image representative of the actual current UI and prevent
 
 ### 6. Deploy Pages only from validated main-branch output
 
-Add a GitHub Actions workflow for pushes to the chosen default branch and manual dispatch. The workflow uses concurrency so an obsolete run cannot deploy after a newer revision has superseded it. It runs tests, app build, simulator capture, provenance validation, and static generation as one chain, then uploads and deploys the generated site with GitHub Pages actions.
+The approved successor `rework-tallyform-marketing-page` separates generation, review and publication. Run the shared test/build/capture/provenance/generation chain locally, or manually on a prepared macOS Actions runner. Publish only an explicitly approved sealed artifact through the manual owner-gated Pages workflow on `main`, using an immutable local review commit or successful Actions generation run plus the approved digest. Do not automatically deploy on source pushes or rebuild after sign-off.
 
 Pull requests may run source-level checks, but deployment is restricted to an approved branch. No deployment step may synthesize a placeholder image or reuse a screenshot from another revision when the current generation fails.
 

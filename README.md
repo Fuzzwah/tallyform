@@ -1,6 +1,6 @@
 # Tallyform — Reps & Practice Tracker
 
-Standalone Zepp OS app spun out of Basket Birdie's putting-practice experiment. Tallyform is the current product identity; Basket Birdie remains a separate product.
+Standalone Zepp OS app spun out of Basket Birdie's putting-practice experiment. Tallyform is the current product identity; Basket Birdie remains a separate product. The goal is broad support across Zepp OS watches, not a Bip Max-only product; Bip Max is the current build and simulator target, not a verified compatibility list for other models.
 
 **Current implementation:** the Tallyform putting prototype, with metres/feet, swipe distance adjustment, made/missed outcomes, undo, local session recovery and the mockup-inspired native UI. Generic measurement types, saved-session history and new recording modes are planned, not implemented.
 

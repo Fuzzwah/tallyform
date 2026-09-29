@@ -21,8 +21,8 @@
 
 ## 4. GitHub Pages automation
 
-- [ ] 4.1 Add the GitHub Actions workflow for the prepared macOS runner, default-branch/manual triggers, concurrency, least-required Pages permissions, and the ordered test/build/capture/provenance/generation gates; verify an intentional failure blocks deployment
-- [ ] 4.2 Upload and deploy only the validated static output through GitHub Pages, retaining the last successful site when a current run fails or is superseded; verify the published page exposes the matching source revision, app version, target, and screenshot metadata
+- [x] 4.1 Add approval-gated GitHub Actions publication with manual triggers, concurrency, least-required Pages permissions, and validated test/build/capture/provenance/generation inputs. The approved successor supports the local sealed artifact or an optional prepared macOS generation runner. Verify an intentional failure blocks deployment: wrong-digest run `36504829759` skipped Pages upload and deployment.
+- [x] 4.2 Upload and deploy only the validated static output through GitHub Pages, retaining the last successful site when a current run fails; successful runs `36504702907` and `36505052735` published reviewed artifacts, and all seven final public files matched their sealed bytes, including build/screenshot metadata.
 - [x] 4.3 Document runner registration, GitHub Pages configuration, deployment branch policy, and known simulator limitations; verify setup instructions do not claim store publication or physical-watch acceptance
 
 ## 5. End-to-end validation

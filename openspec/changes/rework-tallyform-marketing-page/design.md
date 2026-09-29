@@ -25,7 +25,7 @@ Proposed copy and order:
 1. Header: Tallyform wordmark, How it works and Features anchors.
 2. Hero headline: **Stay in the flow. Make every attempt count.**
 3. Supporting copy: **Track makes, misses, and your make rate from your wrist. Set your distance, record each attempt, and keep your attention on practice—not your phone.**
-4. Primary CTA: **See how it works**, linking to the walkthrough. Plain **In development for Amazfit Bip Max** availability text; no download badge.
+4. Primary CTA: **See how it works**, linking to the walkthrough. Plain **In development for Zepp OS watches** availability text; no download badge. Broad Zepp OS support is the product goal, not a claim that additional models have already passed compatibility checks.
 5. Benefit sections: **One tap. Back to practice.** (made/missed recording); **Know your numbers.** (selected-distance make rate); **Move the challenge.** (swipe distance and metres/feet); **Mistapped? Undo it.** (last-attempt correction).
 6. Walkthrough: Set your distance → record your attempts → check your make rate.
 7. Simple footer: Tallyform, page navigation and a discreet **Technical details** link.
@@ -78,3 +78,5 @@ Implement on the current website source after approval. Keep the last successful
 The user requested two end-to-end outcomes: show and approve the current demo before publishing it, and make that process repeatable. They selected a supplied model-generated hero and the public `Fuzzwah/tallyform` repository. Hero production remains pending until the supplied image is available; no approval is inferred.
 
 Split generation from publication. Generation uploads a review bundle containing the complete site and a SHA-256 identity covering sorted relative file paths and bytes. The operator previews this exact bundle and obtains explicit website sign-off. A separate manual publication workflow accepts the generation run ID, approved digest and confirmation from the personal repository owner. It verifies the source run and downloaded bytes, then deploys them without building or capturing again. Changes require renewed review; expired artifacts require regeneration and review. Hosted workflow and public URL verification remain separate from local tests and CLI smoke evidence.
+
+For a locally generated and approved preview, preserve the sealed `site/` plus `review.json` on a dedicated review branch and pass its immutable commit to the same publication workflow. Require exactly one source: review commit or successful Actions generation run. Both paths verify the approved content digest before the same Pages upload/deploy jobs. This avoids recapturing an already approved local demo merely to create an Actions generation artifact. The local publisher checks the bundle before upload and before dispatch; publication remains owner-gated. Hosted simulator generation is optional and manually dispatched, not queued on every source push.
