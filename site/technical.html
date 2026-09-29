@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tallyform simulator capture, build provenance, and illustrative watch artwork details.">
+  <meta name="theme-color" content="#09130e">
+  <title>Technical details · Tallyform</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header page-width">
+    <a class="wordmark" href="./" aria-label="Tallyform home">Tallyform<span class="brand-dot" aria-hidden="true"></span></a>
+    <nav aria-label="Main navigation">
+      <a href="./#how-it-works">How it works</a>
+      <a href="./#features">Features</a>
+    </nav>
+  </header>
+
+  <main id="main" class="technical-main page-width" tabindex="-1">
+    <header class="technical-intro">
+      <p class="eyebrow">Behind the page</p>
+      <h1>Technical details</h1>
+      <p class="lede">The original simulator capture and the illustrative watch artwork serve different purposes. Their source details are available here, separately from the product introduction.</p>
+    </header>
+
+    <section class="technical-section" aria-labelledby="capture-title">
+      <div class="section-heading">
+        <p class="eyebrow">Original app evidence</p>
+        <h2 id="capture-title">Simulator capture</h2>
+        <p>This is the unmodified simulator screenshot, not the image-generated watch illustration shown on the home page.</p>
+      </div>
+      <div class="capture-layout">
+        <figure class="raw-capture">
+          <a href="screenshot.png"><img src="screenshot.png" alt="Original Tallyform capture in the Zepp OS Bip Max simulator: 4 m · 5 made · 1 missed · 83% make rate" loading="lazy" decoding="async"></a>
+          <figcaption>4 m · 5 made · 1 missed · 83% make rate. <a href="screenshot.png">Open original screenshot</a>.</figcaption>
+        </figure>
+        <div class="capture-details">
+          <dl class="build-meta">
+            <div><dt>App version</dt><dd>0.1.0 (code 1)</dd></div>
+            <div><dt>Source revision</dt><dd><code>575d2d1abab20eb318bebbc9c937f750e22c665c</code></dd></div>
+            <div><dt>Zeus target</dt><dd>Amazfit Bip Max</dd></div>
+            <div><dt>Simulator target</dt><dd>Bip Max v1.0.0</dd></div>
+            <div><dt>Captured at</dt><dd>2026-09-29T00:39:16.946Z</dd></div>
+          </dl>
+          <a class="text-link" href="provenance.json">View capture and build provenance <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="technical-section" aria-labelledby="artwork-title">
+      <div class="section-heading">
+        <p class="eyebrow">Marketing illustration</p>
+        <h2 id="artwork-title">Watch artwork</h2>
+        <p>The home-page hero is a single image-generated illustration of an Amazfit Bip Max displaying Tallyform. It uses a simulator capture as its UI reference; it is neither a physical-watch photograph nor unmodified simulator evidence.</p>
+        <p>The artwork provenance records the generation provider and model, prompt, reference identities, represented app-source fingerprint, canonical display state, image digest, and review decision.</p>
+      </div>
+      <ul class="resource-links" role="list">
+        <li><a class="text-link" href="hero-provenance.json">View artwork provenance <span aria-hidden="true">↗</span></a></li>
+        <li><a class="text-link" href="hero.png">Open watch illustration <span aria-hidden="true">↗</span></a></li>
+      </ul>
+    </section>
+
+    <aside class="evidence-note" aria-labelledby="evidence-title">
+      <h2 id="evidence-title">What this evidence establishes</h2>
+      <p>This raw simulator capture records the app build and demo state identified above. It does not establish physical-watch acceptance or store publication. The home-page watch artwork is a separately reviewed illustration, not raw capture evidence.</p>
+      <p>Physical-watch controls, device acceptance, publisher registration, and store availability require separate verification. The site and its artwork do not establish those release gates.</p>
+    </aside>
+  </main>
+
+  <footer class="site-footer page-width">
+    <div class="footer-brand">
+      <a class="wordmark" href="./">Tallyform<span class="brand-dot" aria-hidden="true"></span></a>
+      <p>Reps &amp; Practice Tracker</p>
+    </div>
+    <nav aria-label="Footer navigation">
+      <a href="./">Back to Tallyform</a>
+      <a href="provenance.json">Capture provenance</a>
+      <a href="hero-provenance.json">Artwork provenance</a>
+    </nav>
+  </footer>
+</body>
+</html>

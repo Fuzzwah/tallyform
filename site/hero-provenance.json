@@ -1,0 +1,30 @@
+{
+  "referenceCapturePath": "references/tallyform-simulator.png",
+  "referenceCaptureSha256": "113005c17815824d2dec6bbfd20c20020d73ef170dc24479ba97d830c92627ca",
+  "uiSourceFingerprint": "a5d8be77db03e084c830aa3252443494a6a4b9b24760f6a01bc07d2dfea75853",
+  "canonicalDemoState": "4 m · 5 made · 1 missed · 83% make rate",
+  "imageSha256": "d056780d0bd247aaa2768157eb387f8afc5b3c791b22e082e385aec7fe980027",
+  "imageWidth": 1122,
+  "imageHeight": 1402,
+  "provider": "Not disclosed; artwork supplied by the user",
+  "model": "Not disclosed by the user",
+  "prompt": "Original generation prompt not supplied. Prepared reference brief is retained in references/generation-request.json; it is not asserted to be the prompt used.",
+  "referenceSource": {
+    "capture": "references/tallyform-simulator.png — visually compared against supplied artwork",
+    "composition": "references/bip-max-composition.png — supplied Bip Max visual reference; actual generation inputs not independently verified"
+  },
+  "review": {
+    "status": "approved",
+    "reviewedAt": "2026-09-29T00:27:37.218Z",
+    "scope": "User supplied this hero and requested transparent background removal. Assistant checked branding, canonical values, controls, bezel and perspective against the capture, then reviewed the alpha extraction against a dark background. Website publication has not been approved.",
+    "checks": [
+      "Tallyform / Reps & Practice Tracker",
+      "4 m, Made 5, Missed 1, 83%",
+      "m and ft selectors; Undo, Reset, Skip, Exit",
+      "No simulator chrome or Basket Birdie branding; display contained within bezel"
+    ]
+  },
+  "origin": "User-supplied hero attachment; untouched original retained at references/hero-supplied.png",
+  "sourceImageSha256": "fdd452e12e1dc270d545d140428fba87e5dd19550d6b435cd75c492fa50a702b",
+  "processing": "Pillow RGBA export at original 1122x1402 dimensions. Remove neutral white background connected to outer edges and strap gaps (minimum RGB 185, channel spread at most 35); remove studio floor shadow below strap contour. Expand cleared mask by one pixel and feather 0.55 pixels. Preserve screen text and UI RGB values; no screen compositing or redraw."
+}

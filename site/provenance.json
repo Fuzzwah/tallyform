@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-09-29T00:39:16.946Z",
+  "sourceRevision": "575d2d1abab20eb318bebbc9c937f750e22c665c",
+  "appName": "Tallyform",
+  "appVersion": "0.1.0",
+  "appCode": 1,
+  "zeusTarget": "Amazfit Bip Max",
+  "simulatorTarget": "Bip Max v1.0.0",
+  "zeusVersion": "node: \u001b[32mv25.3.0\u001b[0m\nnpm: \u001b[32mv11.19.1\u001b[0m\nzeus: \u001b[32mv1.9.3\u001b[0m\nzpm: \u001b[32mv3.4.2\u001b[0m",
+  "packagePath": "../../../../../../tmp/tallyform-website-B6Guw5/production.zab",
+  "packageSha256": "611fe5ca77a6abdacfd6443d0406edb9ccaafd50f8a70716d80d6b253906fb7e",
+  "screenshotPath": "screenshot.png",
+  "screenshotSha256": "91014fff4e92348172a677e66024094695dabb80a99c7cbff42eae4518f89b97",
+  "screenshotWidth": 864,
+  "screenshotHeight": 1084,
+  "canonicalDemoState": "4 m · 5 made · 1 missed · 83% make rate",
+  "simulatorOcr": "Zepp OS Simulator - (Press ctrl + alt + g to release Mo...\nTallyform\nReps & Practice Tracker\n1 Swipe up for farther\n4 m\nm\n* Swipe down for closer\nMade\n5\n+\nMissed\n1\n+\n83%\nUndo\nMake rate • this distance\nMiss recorded\nReset\nSkip\nExit"
+}
