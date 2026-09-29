@@ -1,0 +1,57 @@
+name: Generate Tallyform website
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: tallyform-generation
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  generate:
+    name: Build and package website for review
+    if: github.ref == 'refs/heads/main'
+    runs-on: [self-hosted, macOS, zepp-simulator]
+    timeout-minutes: 30
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.19.0
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Generate validated website
+        run: npm run generate-website
+      - name: Seal exact review artifact
+        id: review
+        shell: bash
+        run: |
+          bundle="$RUNNER_TEMP/tallyform-review-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          digest=$(node tools/website-release.mjs seal website/dist "$bundle")
+          echo "bundle=$bundle" >> "$GITHUB_OUTPUT"
+          echo "digest=$digest" >> "$GITHUB_OUTPUT"
+      - name: Upload website for review only
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-review
+          path: ${{ steps.review.outputs.bundle }}
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 30
+      - name: Report review identity
+        env:
+          SITE_DIGEST: ${{ steps.review.outputs.digest }}
+        run: |
+          {
+            echo '## Website ready for review — not published'
+            echo "Run ID: $GITHUB_RUN_ID"
+            echo "Site SHA-256: $SITE_DIGEST"
+            echo 'Download website-review, serve its site/ directory locally, and review desktop/mobile views.'
+            echo 'Only after explicit sign-off, manually dispatch Publish approved Tallyform website with this run ID and digest.'
+          } >> "$GITHUB_STEP_SUMMARY"

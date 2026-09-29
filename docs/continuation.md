@@ -11,7 +11,7 @@ The user wants to experience shipping an independently branded app into the Zepp
 
 ## Unresolved decisions
 
-- Final name: Tallyform, Repnote and Practice Log were suggested, none selected or verified available.
+- Final name: **Tallyform** is confirmed as the current product identity; store availability and publisher registration are not verified.
 - Success/failure mode, simple count mode, or both. Both was recommended, not yet accepted.
 - One adjustable measure per session or several. One for v1 was recommended, not yet accepted.
 - Duration setting versus live timer: do not infer a timer from unit support.
@@ -19,10 +19,10 @@ The user wants to experience shipping an independently branded app into the Zepp
 
 ## Current code
 
-The app/ directory (app.js, app.json, page/ and assets/) come from the working putting prototype. page/session.js still stores distanceM and boolean made outcomes. Tests use the extracted paths. Dependencies are local and pinned. No remote repository is configured; nothing has been submitted to the store.
+The app/ directory (app.js, app.json, page/ and assets/) comes from the working putting prototype. The current manifest and watch page use Tallyform / Reps & Practice Tracker, while page/session.js still stores distanceM and boolean made outcomes. Tests use the extracted paths. Dependencies are local and pinned. The public `Fuzzwah/tallyform` repository is configured as `origin`; no source has been pushed or website published. Nothing has been submitted to the Zepp store.
 
 ## Next work
 
-Resolve recording/measurement choices, then define standalone requirements. Implement measurement types, conversions and adjustable steps without relabelling historical events. Decide saved-session/history scope. Replace branding and icon after naming. Test the release candidate on the physical Bip Max before preparing the store package and listing.
+Resolve measurement and recording choices, then define standalone requirements. Implement measurement types, conversions and adjustable steps without relabelling historical events. Decide saved-session/history scope. Replace the inherited icon after naming. Test the release candidate on the physical Bip Max before preparing the store package and listing.
 
 See standalone-rep-tracker-brief.md for the measurement proposal and official submission reference. Historical screenshots under evidence/putting-practice are not release marketing assets.

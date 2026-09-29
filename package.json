@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "type": "module",
   "private": true,
-  "description": "Standalone Zepp OS repetition and practice tracker; working name",
+  "description": "Tallyform Reps & Practice Tracker",
   "engines": {
     "node": ">=20.19.0"
   },
@@ -12,12 +12,15 @@
     "build": "cd app && zeus build --target \"Amazfit Bip Max\"",
     "dev": "cd app && zeus dev --target \"Amazfit Bip Max\"",
     "preview": "cd app && zeus preview --target \"Amazfit Bip Max\"",
-    "zeus": "zeus"
+    "generate-website": "node tools/generate-website.mjs",
+    "zeus": "zeus",
+    "openspec": "openspec"
   },
   "_moduleAliases": {
     "zeppos-app-utils": "node_modules/@zeppos/zeus-cli/private-modules/zeppos-app-utils"
   },
   "devDependencies": {
+    "@fission-ai/openspec": "1.13.2",
     "@zeppos/device-types": "4.0.0",
     "@zeppos/zeus-cli": "1.9.3"
   }

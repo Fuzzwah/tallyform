@@ -1,0 +1,37 @@
+schema: spec-driven
+
+context: |
+  Rep Tracker is a standalone Zepp OS app; its final product name is undecided.
+  Read README.md, AGENTS.md, docs/continuation.md and
+  docs/standalone-rep-tracker-brief.md before planning changes.
+  Current app/ code is the extracted putting prototype: metres/feet,
+  swipe distance adjustment, made/missed outcomes, undo and local session recovery.
+  app/page/session.js stores distanceM and boolean made outcomes.
+  Generic measurements, saved-session history and new recording modes are proposed,
+  not shipped. Do not treat historical prototype specifications as standalone approval.
+  Open decisions include recording modes, one versus multiple measures, duration
+  setting versus live timer, final branding, store regions and pricing.
+  The inherited app ID 1126719 is development metadata, not verified store registration.
+  Use native @zos widgets and ES2015-compatible JavaScript. Keep domain logic
+  independent of native, Node and browser APIs.
+  Keep this repository independently installable; never depend on the old checkout.
+  Use pinned local tools through npm scripts. Run npm test and npm run build for
+  behavioral or packaging changes. Watch source is in app/; output is app/dist/.
+  Host tests and simulator evidence do not establish physical Bip Max acceptance.
+  Do not claim watch acceptance, store submission or publication without evidence.
+  OpenSpec is a pinned dev dependency. Run its CLI from the repository root using
+  npm run openspec -- <arguments>; for machine-readable JSON use
+  npm run --silent openspec -- <arguments>.
+
+rules:
+  proposal:
+    - Distinguish existing prototype behavior from proposed standalone capabilities.
+    - State non-goals and unresolved product decisions; do not silently decide them.
+  specs:
+    - Specify observable requirements and concrete scenarios, not implementation details.
+    - Preserve historical event meaning when proposing measurement or storage changes.
+  design:
+    - Reuse existing native widget and domain patterns; identify storage compatibility impacts.
+  tasks:
+    - Include npm test and npm run build for behavioral or packaging changes.
+    - Separate host and simulator checks from physical-watch acceptance and store release gates.

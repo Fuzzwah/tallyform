@@ -1,0 +1,100 @@
+name: Publish approved Tallyform website
+
+on:
+  workflow_dispatch:
+    inputs:
+      generation_run_id:
+        description: Successful generation run whose website-review artifact you reviewed
+        required: false
+        type: string
+      review_commit:
+        description: Immutable commit containing an approved local bundle (site/ and review.json); use instead of generation_run_id
+        required: false
+        type: string
+      approved_sha256:
+        description: Exact site SHA-256 approved after reviewing the demo
+        required: true
+        type: string
+      confirm_approval:
+        description: I reviewed this exact website artifact and approve public publication
+        required: true
+        default: false
+        type: boolean
+
+concurrency:
+  group: tallyform-publication
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  prepare:
+    name: Verify explicit approval and exact artifact
+    if: github.ref == 'refs/heads/main' && github.actor == github.repository_owner && inputs.confirm_approval
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.19.0
+      - name: Verify approved artifact identity
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ inputs.generation_run_id }}
+          REVIEW_COMMIT: ${{ inputs.review_commit }}
+          APPROVED_DIGEST: ${{ inputs.approved_sha256 }}
+        shell: bash
+        run: |
+          [[ "$APPROVED_DIGEST" =~ ^[a-f0-9]{64}$ ]] || { echo 'Invalid approved digest'; exit 1; }
+          if [[ -n "$REVIEW_COMMIT" ]]; then
+            [[ -z "$RUN_ID" && "$REVIEW_COMMIT" =~ ^[a-f0-9]{40}$ ]] || { echo 'Specify exactly one artifact source'; exit 1; }
+            gh api "repos/$GITHUB_REPOSITORY/git/commits/$REVIEW_COMMIT" --jq .sha
+          else
+            [[ "$RUN_ID" =~ ^[0-9]+$ ]] || { echo 'Invalid generation run ID'; exit 1; }
+            gh api "repos/$GITHUB_REPOSITORY/actions/runs/$RUN_ID" > "$RUNNER_TEMP/generation.json"
+            jq -e '.conclusion == "success" and .head_branch == "main" and .path == ".github/workflows/generate-website.yml" and (.event == "push" or .event == "workflow_dispatch")' "$RUNNER_TEMP/generation.json"
+          fi
+      - name: Download reviewed artifact without rebuilding
+        if: inputs.generation_run_id != ''
+        uses: actions/download-artifact@v4
+        with:
+          name: website-review
+          run-id: ${{ inputs.generation_run_id }}
+          github-token: ${{ github.token }}
+          path: review
+      - name: Download approved local bundle without rebuilding
+        if: inputs.review_commit != ''
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.review_commit }}
+          path: review
+          persist-credentials: false
+      - name: Verify reviewed bytes
+        env:
+          APPROVED_DIGEST: ${{ inputs.approved_sha256 }}
+        run: node tools/website-release.mjs verify review "$APPROVED_DIGEST"
+      - name: Upload exactly the reviewed site to Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: review/site
+
+  deploy:
+    name: Publish approved artifact
+    needs: prepare
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy without regeneration
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Verify public page is reachable
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: curl --fail --show-error --retry 5 --retry-delay 5 "$PAGE_URL"

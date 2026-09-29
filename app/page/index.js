@@ -45,8 +45,8 @@ Page({
         click_func: callback,
       });
     };
-    text('title', 24, 26, 384, 37, 30, 0xffffff, 'Basket Birdie');
-    text('subtitle', 24, 65, 384, 27, 21, muted, 'Putting Practice');
+    text('title', 24, 26, 384, 37, 30, 0xffffff, 'Tallyform');
+    text('subtitle', 24, 65, 384, 27, 21, muted, 'Reps & Practice Tracker');
 
     rect(24, 105, 384, 172, 0x4dad72, 28);
     rect(26, 107, 380, 168, 0x10271d, 26);

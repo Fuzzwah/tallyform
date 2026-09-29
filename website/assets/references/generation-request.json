@@ -1,0 +1,17 @@
+{
+  "status": "awaiting-image-generation",
+  "uiReference": "tallyform-simulator.png",
+  "uiReferenceSha256": "113005c17815824d2dec6bbfd20c20020d73ef170dc24479ba97d830c92627ca",
+  "captureProvenance": "capture-provenance.json",
+  "compositionReference": "bip-max-composition.png",
+  "compositionReferenceSha256": "82885427e5711688e506bbade39254d36c1e19258ee526963e63b2f8e9a7cbb9",
+  "compositionSource": "User-provided watch render, supplied as a composition reference for this task. Not a Tallyform screenshot or approved marketing asset.",
+  "prompt": "Create one photorealistic product-hero image of an Amazfit Bip Max smartwatch, three-quarter view with the full case and strap, on a restrained dark green/neutral studio background. Use the supplied watch image only for watch hardware and composition. Replace all Basket Birdie content with the supplied Tallyform UI reference. Preserve Tallyform, Reps & Practice Tracker, 4 m, the m and ft selectors, Made 5, Missed 1, both plus controls, 83%, Make rate · this distance, Miss recorded, Undo, Reset, Skip and Exit. Omit the desktop simulator title bar and window controls. Fit the UI naturally inside the glass and bezel, matching perspective without floating edges, overlap, cropped controls or distorted text. Keep the screen legible, with restrained realistic reflections. No invented widgets, additional branding, people, app-store badges or promotional text outside the watch.",
+  "acceptance": [
+    "Bip Max hardware and screen perspective match the watch reference",
+    "All Tallyform text, controls and canonical values match the simulator capture",
+    "No simulator chrome or Basket Birdie branding",
+    "No floating edges, case overlap, cropped controls or unreadable text",
+    "Review full resolution and desktop/mobile display sizes, then obtain user approval"
+  ]
+}

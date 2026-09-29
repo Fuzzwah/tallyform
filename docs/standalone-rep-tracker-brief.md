@@ -1,12 +1,12 @@
 # Standalone rep tracker — product and release brief
 
-Draft, 2026-09-29. This records the requested direction and proposed decisions; the standalone app has not yet been implemented or submitted. Basket Birdie remains a separate product.
+Draft, 2026-09-29. This records the requested direction and proposed decisions; the Tallyform app has not yet been submitted. Basket Birdie remains a separate product.
 
 ## Product
 
 A watch-first manual repetition and attempt tracker. Choose a practice setting, adjust its value by swiping, and record each repetition with a physical button or touch. Retain the green/black card layout from the putting prototype, with activity-neutral branding and labels.
 
-Working name recommendation: **Tallyform**, with store descriptor **Reps & Practice Tracker**. This is a candidate, not an approved or reserved name. Preliminary web research did not establish availability. RepMark, Repwise and RepKeeper already have fitness-app uses and are poor candidates for differentiation.
+Product name: **Tallyform**, with store descriptor **Reps & Practice Tracker**. The name is confirmed for this repository; store availability and publisher registration have not been verified. RepMark, Repwise and RepKeeper already have fitness-app uses and are poor candidates for differentiation.
 
 ## Measurement model
 
@@ -30,7 +30,7 @@ Duration as a selected practice setting is separate from a stopwatch or countdow
 
 - Recording mode: success/failure attempts only, simple repetitions only, or both? Recommendation: both. In simple mode silver adds a rep and red undoes the last rep; in outcome mode silver logs success and red logs failure. Mode labels and onboarding must make this distinction explicit.
 - One measurement per session or several simultaneous measurements? Recommendation: one for the first release. Weight and duration together would require a different setup and results screen.
-- Final app name and publishing identity.
+- Store regions, pricing, publisher details and account-registered app ID.
 
 ## Proposed first store release
 

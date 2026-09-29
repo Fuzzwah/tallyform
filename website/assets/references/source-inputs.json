@@ -1,0 +1,10 @@
+{
+  "uiSourceFingerprint": "a5d8be77db03e084c830aa3252443494a6a4b9b24760f6a01bc07d2dfea75853",
+  "preparedAt": "2026-09-29T00:05:36.682Z",
+  "captureReference": "tallyform-simulator.png",
+  "captureSha256": "113005c17815824d2dec6bbfd20c20020d73ef170dc24479ba97d830c92627ca",
+  "compositionReference": "bip-max-composition.png",
+  "compositionSha256": "82885427e5711688e506bbade39254d36c1e19258ee526963e63b2f8e9a7cbb9",
+  "status": "references-prepared-not-hero-approval",
+  "note": "Fingerprint records current app source at reference preparation; original capture provenance is retained separately. No generated artwork exists."
+}
