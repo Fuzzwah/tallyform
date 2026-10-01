@@ -2,7 +2,7 @@
 
 Standalone Zepp OS app spun out of Basket Birdie's putting-practice experiment. Tallyform is the current product identity; Basket Birdie remains a separate product. The goal is broad support across Zepp OS watches, not a Bip Max-only product; Bip Max is the current build and simulator target, not a verified compatibility list for other models.
 
-**Current implementation:** the Tallyform putting prototype, with metres/feet, swipe distance adjustment, made/missed outcomes, undo, local session recovery and the mockup-inspired native UI. Generic measurement types, saved-session history and new recording modes are planned, not implemented.
+**Current source:** the Bip Max native page offers simple repetition and success/failure modes, distance/weight/duration settings and unitless counting, undo, finish/summary, saved history and scoped recovery. Active state and summaries use verified versioned files; valid same-ID `putting-session-v1` snapshots are imported read-only. The stopwatch/countdown model is pure code only; timer controls and background alerts are not integrated. Host tests exercise all modes/types; the simulator exercised outcome/distance migration, save/reopen/history and generic capture. No physical-watch acceptance.
 
 ## Develop
 
@@ -17,7 +17,7 @@ npm run dev
 
 `dev` requires the Zepp simulator. `npm run preview` uses the paired-watch developer flow. Watch source is in `app/`; build output is in `app/dist/`. This keeps host tests and planning documents out of the watch package.
 
-To generate the static marketing site, prepare the macOS simulator runner and reviewed Bip Max hero, then run `npm run generate-website`. The current user-supplied hero has a transparent background; the raw simulator capture remains on a separate technical page. Capture closes the device window and confirms QEMU's Quit dialog while leaving the simulator manager open. See [website generation](docs/website-generation.md) for preparation, review/sign-off, provenance, and approval-gated GitHub Pages deployment.
+Website capture now exercises the generic outcome page. The existing approved hero depicts the **old putting UI** and fails the changed-source/artwork provenance gate; obtain a renewed reviewed hero and explicit site approval before regenerating or publishing. See [website generation](docs/website-generation.md).
 
 ## Spec-driven changes
 
@@ -53,18 +53,17 @@ with `update` after upgrading the pinned dependency; do not customize generated
 commands or skills directly. Put project-specific guidance in `openspec/config.yaml`
 and `AGENTS.md`.
 
-The initial specs and changes directories are intentionally empty. Existing
-`docs/prototype-specification/` remains historical evidence, not approved
-requirements for the standalone tracker. Use exploration to resolve the choices
-in `docs/continuation.md` before proposing those features.
+`docs/prototype-specification/` is historical, not the standalone baseline. The
+approved `tallyform-first-store-release` change in `openspec/changes/` tracks the
+remaining watch, timer, compatibility and publication gates.
 
 ## Product and release work
 
-Read [the product brief](docs/standalone-rep-tracker-brief.md) and [continuation notes](docs/continuation.md). The intended product supports configurable distance, duration, weight and custom numeric settings. Recording modes and one-versus-multiple measures per session are still open decisions.
+Read [the product brief](docs/standalone-rep-tracker-brief.md) and [continuation notes](docs/continuation.md). Simple/outcome modes and one measurement type per session are implemented in source. Custom numeric measurements and timers are not available in the watch page.
 
 The manifest app ID `1126719` is inherited development metadata, not a verified store registration. Before release, register this product in the publisher's Zepp account and use its assigned ID. The inherited icon still needs replacement; Tallyform is the current product branding.
 
-The prototype has host and simulator evidence, but has not been accepted or published in the Zepp store. Physical button mapping and recovery still require watch validation. See [simulator/watch instructions](docs/zepp-os-simulator-and-watch-validation.md); Basket Birdie paths there are historical. Use this repository's npm commands above.
+The new page has host and Bip Max simulator evidence, but no physical-watch acceptance or Zepp store submission. New-session hardware mapping, timer integration and other-model layouts remain open. See the [device-support candidate matrix](docs/device-support-matrix.md) and [simulator/watch instructions](docs/zepp-os-simulator-and-watch-validation.md); matrix candidates are **not** a supported-model list.
 
 ## Origin
 

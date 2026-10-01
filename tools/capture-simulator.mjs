@@ -101,23 +101,16 @@ function appPoint(geometry, x, y) {
   return [geometry.left + x, geometry.top + TITLE_BAR_HEIGHT + y];
 }
 
-function input(geometry, action, ...values) {
-  activateSimulator();
-  run(INPUT_BINARY, [action, ...values.map(String)]);
-}
 
 function click(geometry, x, y) {
-  input(geometry, 'click', ...appPoint(geometry, x, y));
+  activateSimulator();
+  releaseMouseCapture();
+  // QEMU captures relative mouse movement: anchor inside an inert corner before targeting a control.
+  run(INPUT_BINARY, ['click', ...appPoint(geometry, 10, 10).map(String)]);
+  run(INPUT_BINARY, ['click', ...appPoint(geometry, x, y).map(String)]);
   run('sleep', ['0.45']);
 }
 
-function swipe(geometry, direction) {
-  const x = geometry.left + geometry.width / 2;
-  const startY = geometry.top + TITLE_BAR_HEIGHT + 190;
-  const endY = startY + (direction === 1 ? -90 : 90);
-  input(geometry, 'swipe', x, startY, x, endY, '0.7');
-  run('sleep', ['0.7']);
-}
 
 function capture(geometry, outputPath) {
   mkdirSync(dirname(outputPath), { recursive: true });
@@ -140,34 +133,28 @@ function distanceFrom(text) {
 
 function ensureCanonicalState(geometry) {
   let text = readScreen(geometry, 'before');
-  if (text.includes('Press SILVER') || text.includes('Skip')) click(geometry, 266, 472);
-  click(geometry, 166, 472);
-  click(geometry, 166, 472);
-  click(geometry, 359, 168);
-
-  text = readScreen(geometry, 'distance');
-  const current = distanceFrom(text);
-  if (current === null) fail(`could not read current metric distance from simulator:\n${text}`);
-  const delta = Math.round(TARGET_DISTANCE - current);
-  if (Math.abs(TARGET_DISTANCE - current) > 0.01 && Math.abs(TARGET_DISTANCE - current - delta) > 0.01) {
-    fail(`current distance ${current} m cannot be adjusted to ${TARGET_DISTANCE} m with whole-unit gestures`);
+  if (text.includes('Saved sessions')) {
+    click(geometry, 315, 342); // History -> Back
+    text = readScreen(geometry, 'setup');
   }
-  for (let index = 0; index < Math.abs(delta); index += 1) swipe(geometry, delta > 0 ? 1 : -1);
-
-  text = readScreen(geometry, 'cleared');
-  const madeHasPositiveCount = /Made\s*\n\s*[1-9]\b/.test(text);
-  const missedHasPositiveCount = /Missed\s*\n\s*[1-9]\b/.test(text);
-  // Vision may omit an isolated zero on this simulator skin; reject stale
-  // positive counts here and require the exact canonical values after setup.
-  if (distanceFrom(text) !== TARGET_DISTANCE || madeHasPositiveCount || missedHasPositiveCount) {
-    fail(`simulator did not reach clean canonical distance state:\n${text}`);
+  if (!text.includes('New practice') || !text.includes('outcome') || !text.includes('distance')) {
+    fail(`capture requires outcome · distance setup; existing active data is not discarded:\n${text}`);
   }
-  for (let index = 0; index < 5; index += 1) click(geometry, 162, 336);
-  click(geometry, 360, 336);
+  click(geometry, 117, 342); // Start a new session
+  text = readScreen(geometry, 'initial');
+  if (!text.includes('Success') || !text.includes('Failure') || distanceFrom(text) !== 5) {
+    fail(`new session did not present a clean distance state:\n${text}`);
+  }
+  click(geometry, 60, 186); // In-card decrease: 5 m -> 4 m
+  text = readScreen(geometry, 'selected');
+  if (distanceFrom(text) !== TARGET_DISTANCE || !text.includes('0/0')) {
+    fail(`simulator did not reach clean 4 m state:\n${text}`);
+  }
+  for (let index = 0; index < 5; index += 1) click(geometry, 114, 334); // Success
+  click(geometry, 318, 334); // Failure
   text = readScreen(geometry, 'final');
-  if (distanceFrom(text) !== TARGET_DISTANCE || !text.includes('Made\n5')
-    || !text.includes('Missed\n1') || !text.includes('83%') || text.includes('Press SILVER')) {
-    fail(`simulator did not reach canonical marketing state:\n${text}`);
+  if (distanceFrom(text) !== TARGET_DISTANCE || !text.includes('5/6') || !text.includes('83%')) {
+    fail(`simulator did not reach canonical practice state:\n${text}`);
   }
   return text;
 }

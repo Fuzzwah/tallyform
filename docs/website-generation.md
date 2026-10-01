@@ -60,7 +60,7 @@ After the simulator prerequisites and reviewed hero assets are ready, run:
 npm run generate-website
 ```
 
-The command runs host tests, creates the Bip Max production package, refreshes the simulator from the current checkout, resets the visible session state, records five made and one missed attempt at 4 m, captures the simulator window, validates capture provenance and the reviewed hero, and writes the static site to `website/dist/`.
+The capture path requires the outcome/distance **setup** screen (or saved-history screen). It does **not** discard an existing active session. It starts a fresh session, taps the active card's in-card − at approximately `(60,186)` to select `4 m`, then taps the large `✓ Success` `(114,334)` five times and `× Failure` `(318,334)` once. These coordinates are in the 432×514 Bip Max design area, not macOS desktop coordinates; `tools/capture-simulator.mjs` maps them through the detected simulator window and primes QEMU's relative mouse capture. OCR must confirm `4 m`, `5/6 here`, `83% total` before taking the real screenshot and closing QEMU. To verify only the installed app without regenerating or publishing the website, run `node tools/capture-simulator.mjs --output /tmp/tallyform-current-screen.png` from this repo after checking clean setup. The generator additionally validates package/capture provenance and a separately reviewed hero before replacing `website/dist/`.
 
 The generated output contains:
 
@@ -72,7 +72,7 @@ The generated output contains:
 - `screenshot.png`, the unmodified simulator capture;
 - `provenance.json`, app build and capture identity.
 
-Missing, altered, unreviewed or UI-stale artwork fails generation before replacing the previous complete output. A raw capture or composition reference is never substituted for the approved hero.
+Missing, altered, unreviewed or UI-stale artwork fails generation before replacing the previous complete output. The existing approved hero and `hero.json` depict the old putting UI; the generic UI and subsequent active-screen redesign changed the source fingerprint and on-watch geometry. A new reference capture of the installed active screen, reviewed artwork preserving its selected-value card and labelled controls, and explicit site approval are required. A raw capture is never substituted for the hero. Do not run website generation to republish the historical hero merely because the simulator capture succeeds.
 
 The `/generate-website` skill is an operator-facing wrapper around this same npm command. GitHub Actions uses the same generator contract; it does not maintain a separate website implementation.
 
@@ -106,11 +106,13 @@ The generator validates digests, dimensions, review status and source fingerprin
 
 The normal website build consumes local assets; it does not call an image model or need image-service credentials. The user supplied the current hero. Its untouched master is `references/hero-supplied.png`; `hero.png` is the transparent RGBA export requested by the user. Background and strap-gap whites were removed without changing the screen text or compositing another screen. Export identity and processing are recorded in `hero.json`. The original model/provider/prompt were not supplied and are explicitly recorded as undisclosed, not invented.
 
-## Current redesign verification
+## Historical putting-site verification
 
 The complete generator passed with the supplied transparent hero: 39 host tests, production build, simulator capture, asset validation and website packaging. After capture, automation confirmed QEMU's Quit dialog; the QEMU process was absent and the simulator manager remained running.
 
 The complete sealed site was reviewed at 1440 px and 375 px beneath `/site/`, then approved by the user with “ship it.” The user subsequently requested Zepp OS-wide positioning; only the two availability statements were changed to “In development for Zepp OS watches.” The app capture, hero, provenance and all other site files were preserved byte-for-byte.
+
+For the redesigned active page, the raw Bip Max simulator capture succeeded separately: 864×1084 pixels with OCR `4 m`, `5/6 here` and `83% total`, including the relocated in-card −/+, labelled outcome actions, compact secondary row and full-width Finish. The approved historical hero still represents the old putting screen. This capture is **not** approval of renewed artwork, a successful complete generator run for the redesigned UI, or permission to republish the site.
 
 
 ## GitHub Pages deployment

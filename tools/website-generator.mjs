@@ -9,7 +9,7 @@ export const WEBSITE_DIR = join(ROOT, 'website');
 export const GENERATED_DIR = join(WEBSITE_DIR, 'dist');
 export const ZEUS_TARGET = 'Amazfit Bip Max';
 export const SIMULATOR_TARGET = 'Bip Max v1.0.0';
-export const CANONICAL_DEMO_STATE = '4 m · 5 made · 1 missed · 83% make rate';
+export const CANONICAL_DEMO_STATE = 'outcome · distance · 4 m · 5/6 here · 83% total';
 
 const PNG_SIGNATURE = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]);
 const SHA256 = /^[a-f0-9]{64}$/;
