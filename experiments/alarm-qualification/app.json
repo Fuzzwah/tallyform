@@ -1,0 +1,28 @@
+{
+  "configVersion": "v3",
+  "app": {
+    "appId": 1129231,
+    "appName": "Tallyform Alarm Probe",
+    "appType": "app",
+    "version": { "code": 9, "name": "0.0.9" },
+    "icon": "icon.png",
+    "vender": "zepp",
+    "description": "Temporary physical-watch alarm qualification"
+  },
+  "permissions": ["device:os.alarm", "device:os.notification", "device:os.local_storage"],
+  "runtime": {
+    "apiVersion": { "compatible": "4.0", "target": "4.0", "minVersion": "4.0" }
+  },
+  "targets": {
+    "432x514-amazfit-bip-max": {
+      "module": {
+        "page": { "pages": ["page/index"] },
+        "app-service": { "services": ["app-service/alarm"] }
+      },
+      "platforms": [{ "name": "PikeW", "deviceSource": 11206915 }],
+      "designWidth": 432
+    }
+  },
+  "i18n": { "en-US": { "appName": "Tallyform Alarm Probe" } },
+  "defaultLanguage": "en-US"
+}
